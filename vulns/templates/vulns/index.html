@@ -1,0 +1,11 @@
+{% extends 'vulns/base.html' %}
+
+{% block content %}
+<h1>{{ip}}</h1>
+<h2>{{host}}</h2>
+{% if vulnerable %}
+<h2><strong><font color="red">{{vulnerable}}</font></strong></h2>
+{% else %}
+<h2><strong><font color="green">No Vulnerable</font></strong></h2>
+{% endif %}
+{% endblock %}
