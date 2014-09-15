@@ -12,7 +12,7 @@ import lizepy
 def index(request):
     #client_ip = request.META['REMOTE_ADDR']
     ValidIp = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
-    client_ip = "8.8.8.8"
+    client_ip = get_ip(request)
     check = False
     country = ""
     city = ""
@@ -53,3 +53,14 @@ def test(request, ip):
 def home(request):
     context = { 'home':'Para probar su router haga click en el botón' }
     return render(request, 'vulns/home.html', context)
+  
+def get_ip(request):
+    try:
+      x_forward = request.META.get("HTTP_X_FORWARDED_FOR")
+      if x_forward:
+	ip = x_forward.split(",")[0]
+      else:
+	ip = request.META.get("REMOTE_ADDR")
+    except:
+      ip = ""
+    return ip
