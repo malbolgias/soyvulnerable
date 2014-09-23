@@ -54,6 +54,9 @@ def home(request):
     context = { 'home':'Para probar su router haga click en el botón' }
     return render(request, 'vulns/home.html', context)
   
+def problematica(request):    
+    return render(request, 'vulns/problematica.html')
+  
 def get_ip(request):
     try:
       x_forward = request.META.get("HTTP_X_FORWARDED_FOR")

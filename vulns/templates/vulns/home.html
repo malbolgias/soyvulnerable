@@ -1,6 +1,43 @@
 {% extends 'vulns/base.html' %}
 
+{% block js %}
+<script>
+  $("loading-example-btn").click(function() {
+      var $btn = $(this);
+      $btn.button('loading');
+      // simulating a timeout
+      setTimeout(function () {
+	  $btn.button('reset');
+      }, 1000);
+  });
+</script>
+{% endblock %}
+{% block menu %}
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">SoyVulnerable</h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="/vulns/">Home</a></li>
+                <li><a href="/problematica/">Problemática</a></li>
+                <li><a href="contact/">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+{% endblock %}
 {% block content %}
 <h1>{{home}}</h1>
-<a href="test/" class="btn btn-lg btn-default">Probar</a>
+<a href="test/" type="button" class="btn btn-lg btn-default">Probar</a>
+<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary">
+  Loading states
+</button><br/>
+<script>
+  $('#loading-example-btn').click(function () {
+    var btn = $(this)
+    btn.button('loading')
+    $.ajax(...).always(function () {
+      btn.button('reset')
+    });
+  });
+</script>
+
 {% endblock %}
