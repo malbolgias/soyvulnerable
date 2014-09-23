@@ -57,6 +57,9 @@ def home(request):
 def problematica(request):    
     return render(request, 'vulns/problematica.html')
   
+def contacto(request):    
+    return render(request, 'vulns/contacto.html')
+  
 def get_ip(request):
     try:
       x_forward = request.META.get("HTTP_X_FORWARDED_FOR")
