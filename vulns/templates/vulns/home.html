@@ -5,6 +5,7 @@
   $("loading-example-btn").click(function() {
       var $btn = $(this);
       $btn.button('loading');
+      window.location = "/test/"
       // simulating a timeout
       setTimeout(function () {
 	  $btn.button('reset');
@@ -26,18 +27,7 @@
 {% endblock %}
 {% block content %}
 <h1>{{home}}</h1>
-<a href="test/" type="button" class="btn btn-lg btn-default">Probar</a>
-<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary">
-  Loading states
-</button><br/>
-<script>
-  $('#loading-example-btn').click(function () {
-    var btn = $(this)
-    btn.button('loading')
-    $.ajax(...).always(function () {
-      btn.button('reset')
-    });
-  });
-</script>
+<a href="test/" type="button" class="btn btn-lg btn-default" id="loading-example-btn">Probar</a>
+
 
 {% endblock %}

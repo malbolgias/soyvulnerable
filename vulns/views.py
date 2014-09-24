@@ -21,25 +21,31 @@ def index(request):
       #client_ip = "186.80.56.1/24"
       nm.scan(client_ip, '80,8080,443,64680', arguments='--script=http-vuln-une -Pn')
       for host in nm.all_hosts():
-	client_host = ('\nHost : %s (%s)' % (host, nm[host].hostname()))
-	geoip = lizepy.get_geoip(str(host))
-	if geoip.country_code:
-	  country = geoip.country_code
-	if geoip.city:
-	  city = geoip.city
-	for ports in nm[host].all_tcp():
-	    if nm[host]['tcp'][ports]['state'] == "open":
-		if (re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-une'])):
-		  vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = nm[host]['tcp'][ports]['script']['http-vuln-une'], country = country, city = city)
-		  vuln.save()
-		  output = nm[host]['tcp'][ports]['script']['http-vuln-une']
-		  check = re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-une'])
-		  check = check.group()
-		else:
-		  check = False
-	if check == False:
-	  vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = "", vulnerable = False, country = country, city = city)
-	  vuln.save()
+        client_host = ('\nHost : %s (%s)' % (host, nm[host].hostname()))
+        geoip = lizepy.get_geoip(str(host))
+        try:
+          if geoip.country_code:
+            country = geoip.country_code
+        except:
+          country = ""
+        try:
+          if geoip.city:
+            city = geoip.city
+        except:
+          city = ""
+        for ports in nm[host].all_tcp():
+            if nm[host]['tcp'][ports]['state'] == "open":
+                if (re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-une'])):
+                  vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = nm[host]['tcp'][ports]['script']['http-vuln-une'], country = country, city = city)
+                  vuln.save()
+                  output = nm[host]['tcp'][ports]['script']['http-vuln-une']
+                  check = re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-une'])
+                  check = check.group()
+                else:
+                  check = False
+        if check == False:
+          vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = "", vulnerable = False, country = country, city = city)
+          vuln.save()
       template = loader.get_template('vulns/index.html')
       context = {'ip':client_ip, 'host':client_host, 'vulnerable':check}
       return render(request, 'vulns/index.html', context)
@@ -64,9 +70,9 @@ def get_ip(request):
     try:
       x_forward = request.META.get("HTTP_X_FORWARDED_FOR")
       if x_forward:
-	ip = x_forward.split(",")[0]
+        ip = x_forward.split(",")[0]
       else:
-	ip = request.META.get("REMOTE_ADDR")
+        ip = request.META.get("REMOTE_ADDR")
     except:
       ip = ""
     return ip
