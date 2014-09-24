@@ -19,6 +19,9 @@ a:hover {
   border: 1px solid #fff;
 }
 
+p {
+  text-align: justify;
+}
 
 /*
  * Base structure
