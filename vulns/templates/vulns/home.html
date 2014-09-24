@@ -4,12 +4,11 @@
 <script>
   $("loading-example-btn").click(function() {
       var $btn = $(this);
-      $btn.button('loading');
-      window.location = "/test/"
+      $btn.button('Cargando');
       // simulating a timeout
       setTimeout(function () {
 	  $btn.button('reset');
-      }, 5000);
+      }, 10000);
   });
 </script>
 {% endblock %}
@@ -27,7 +26,7 @@
 {% endblock %}
 {% block content %}
 <h1>{{home}}</h1>
-<a href="test/" type="button" class="btn btn-lg btn-default" id="loading-example-btn">Probar</a>
+<a href="test/" type="button" class="btn btn-lg btn-default" id="loading-example-btn" data-loading-text="Probando...">Probar</a>
 
 
 {% endblock %}
