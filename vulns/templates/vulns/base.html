@@ -37,8 +37,12 @@
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-	  {% block menu %}
-          
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">SoyVulnerable</h3>
+	      {% block menu %}
+            </div>
+          </div>
 	  {% endblock %}
           <div class="inner cover">
             {% block content %}
