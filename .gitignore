@@ -54,4 +54,8 @@ docs/_build/
 target/
 
 *.sqlite3
+<<<<<<< HEAD
 orch.py
+=======
+orchestrate.py
+>>>>>>> master
