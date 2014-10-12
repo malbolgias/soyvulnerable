@@ -12,7 +12,7 @@ import orch
 
 # Create your views here.
 def index(request):
-    #client_ip = request.META['REMOTE_ADDR']
+    client_ip = request.META['REMOTE_ADDR']
     client = Client(orch.key)
     #Regex para detectar ips validas y evitar que se manipule la informacion recibida
     ValidIp = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
