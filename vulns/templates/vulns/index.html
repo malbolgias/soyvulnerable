@@ -11,7 +11,13 @@
 <h2>{{host}}</h2>
 {% if vulnerable %}
 <h2><strong><font color="red">{{vulnerable}}</font></strong></h2>
+<p>
+Su dispositivo es vulnerable, por lo cual esta expuesto a los diferentes riesgos descritos en el apartado de problemática. Como subscriptor de un servicio de banda ancha, el proveedor debería ser responsable del aseguramiento de sus propios dispositivos. Es muy importante comunicarse con ellos y solicitar que el problema sea solucionado. Para facilitar esta labor puede seguir este <a href="/guion" title="Guion">guión</a> donde se detalla el problema para ser expuesto ante la linea de servicio del proveedor. También es importante comunicarse con las autoridades en búsqueda de una solución, en especial con el caivirtual y colcert. Ambas son entidades encargadas de seguridad en Internet, y ambas han sido contactadas previamente. Pero han ignorado la problemática. Si entre todos contribuimos para dar a conocer el problema puede que se le de un tratamiento pronto y efectivo. 
+<br>
+Por el momento puede consultar las medidas preventivas en el siguiente <a href="/solucion" title="Solución">enlace</a>.
+</p>
 {% else %}
 <h2><strong><font color="green">No Vulnerable</font></strong></h2>
+<p>Las pruebas ejecutadas sobre su dispositivo tuvieron un resultado negativo, las vulnerabilidades comunes existentes posiblemente no lo afectan. Aunque existe la probabilidad que el proveedor haya restringido el rango de direcciones IP que lo pueden administrar y así también se impide la verificación correcta de las vulnerabilidades. Pero de igual manera las vulnerabilidades existen y pueden ser aprovechadas por actores maliciosos. Solo basta visitar una página <a href="http://www.inteco.es/technologyForecastingSearch/CERT/Alerta_Temprana/Bitacora_de_ciberseguridad/300M_routers_domesticos_comprometidos" title="Fuente" >infectada</a> para comprometer su dispositivo.</p>
 {% endif %}
 {% endblock %}

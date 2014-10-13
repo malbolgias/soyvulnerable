@@ -6,17 +6,21 @@
 a,
 a:focus,
 a:hover {
-  color: #fff;
+  color: LightGreen;
 }
 
 /* Custom default button */
 .btn-default,
-.btn-default:hover,
 .btn-default:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: #fff;
   border: 1px solid #fff;
+  background: white;
+  transition: background 0.8s;
+}
+.btn-default:hover {
+  background: #E14107;
+  color: white;
 }
 
 p {
