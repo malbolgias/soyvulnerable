@@ -22,7 +22,7 @@ def index(request):
     city = ""
     if (re.match(ValidIp, client_ip)):
       nm = nmap.PortScanner()
-      client_ip = "186.80.56.1/24"
+      #client_ip = "186.80.56.1/24"
       #Ejecutar nmap sobre puertos http y script de deteccion de vulnerabilidades
       nm.scan(client_ip, '80,8080,443,64680', arguments='--script=http-vuln-col -Pn -T5')
       #Iterar sobre los resultados del escaneo
