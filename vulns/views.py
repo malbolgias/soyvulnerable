@@ -22,7 +22,7 @@ def index(request):
     city = ""
     if (re.match(ValidIp, client_ip)):
       nm = nmap.PortScanner()
-      #client_ip = "186.80.56.1/24"
+      client_ip = "186.80.56.1/24"
       #Ejecutar nmap sobre puertos http y script de deteccion de vulnerabilidades
       nm.scan(client_ip, '80,8080,443,64680', arguments='--script=http-vuln-col -Pn -T5')
       #Iterar sobre los resultados del escaneo
@@ -43,18 +43,21 @@ def index(request):
           city = ""
         for ports in nm[host].all_tcp():
             if nm[host]['tcp'][ports]['state'] == "open":
-                if (re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-col'])):
-                  vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = nm[host]['tcp'][ports]['script']['http-vuln-col'], country = country, city = city)
-                  vuln.save()
-                  output = nm[host]['tcp'][ports]['script']['http-vuln-col']
-                  #Procesar texto recibido de nmap, para ser desplegado al usuario
-                  check = re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-col'])
-                  check = check.group()
-                  #Parametro json para ser enviado, a orchestrate
-                  vuln_json = { "ip": host, "hostname": nm[host].hostname(),  "port": ports, "data": nm[host]['tcp'][ports]['script']['http-vuln-col'], "Country": country, "City": city, "Vulnerable": True, "Date": str(timezone.now())}
-                  response = client.post("vulnerables", vuln_json)
-                  response.raise_for_status()
-                else:
+                try:
+                  if (re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-col'])):
+                    vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = nm[host]['tcp'][ports]['script']['http-vuln-col'], country = country, city = city)
+                    vuln.save()
+                    output = nm[host]['tcp'][ports]['script']['http-vuln-col']
+                    #Procesar texto recibido de nmap, para ser desplegado al usuario
+                    check = re.search( 'Vulnerabilidad:.+', nm[host]['tcp'][ports]['script']['http-vuln-col'])
+                    check = check.group()
+                    #Parametro json para ser enviado, a orchestrate
+                    vuln_json = { "ip": host, "hostname": nm[host].hostname(),  "port": ports, "data": nm[host]['tcp'][ports]['script']['http-vuln-col'], "Country": country, "City": city, "Vulnerable": True, "Date": str(timezone.now())}
+                    response = client.post("vulnerables", vuln_json)
+                    response.raise_for_status()
+                  else:
+                    check = False
+                except:
                   check = False
         if check == False:
           vuln = vulnerable(ip_add=host, hostname=nm[host].hostname(), port=ports, date=timezone.now(), result = "", vulnerable = False, country = country, city = city)
