@@ -1,5 +1,0 @@
-Django==1.7
-argparse==1.2.1
-lizepy==0.3.2
-python-nmap==0.3.4                                                                                                                                                                                                                                 
-wsgiref==0.1.2    
