@@ -12,4 +12,5 @@ class vulnerableAdmin(admin.ModelAdmin):
   ]
   list_display = ('ip_add', 'hostname', 'vulnerable', 'country', 'date')
   list_filter = ['vulnerable', 'country']
+  unique_together = ("ip_add", "vulnerable")
 admin.site.register(vulnerable, vulnerableAdmin)

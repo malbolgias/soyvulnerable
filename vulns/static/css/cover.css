@@ -168,6 +168,15 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 800px;
   }
+}
+
+@media (max-height: 750px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    position: relative;
+  }
+  .masthead{ padding-bottom:20px;}
 }
