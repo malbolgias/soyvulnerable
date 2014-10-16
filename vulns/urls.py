@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^contacto/$', views.contacto, name='contacto'),
     url(r'^guion/$', views.guion, name='guion'),
     url(r'^solucion/$', views.guion, name='solucion'),
+    url(r'^avisolegal/$', views.avisolegal, name='avisolegal'),
 )

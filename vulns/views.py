@@ -86,6 +86,9 @@ def contacto(request):
 def guion(request):    
     return render(request, 'vulns/guion.html')
   
+def avisolegal(request):    
+    return render(request, 'vulns/avisolegal.html')
+  
 def get_ip(request):
     try:
       x_forward = request.META.get("HTTP_X_FORWARDED_FOR")

@@ -1,0 +1,53 @@
+{% extends 'vulns/base.html' %}
+{% block menu %}
+              <ul class="nav masthead-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/problematica/">Problemática</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+              </ul>
+{% endblock %}
+
+{% block content %}
+<p >El servicio
+soyvulnerable tiene dos fines; El primero es como servicio social y
+el segundo es de investigación académica. Para su funcionamiento la
+página recolecta datos de análisis de tráfico a través del
+servicio “Google analytics”. 
+</p>
+
+<p >En el momento que se
+pulsa el botón “Probar” se almacena en una base de datos y en
+<a href="https://orchestrate.io/" title="orchestrate">orchestrate</a>: 
+</p>
+
+<p>
+<ul>
+	<li>IP</li>
+	<li>Hostname</li>
+	<li>País</li>
+	<li>Ciudad</li>
+	<li>Resultado</li>
+</ul>
+</p>
+
+<p >Aunque la
+información registrada no es información personal, si es delicada
+en específico, para los casos en que el resultado sea positivo. La
+información almacenada no sera compartida con ningún tercero con
+fines diferentes a los académicos. 
+</p>
+
+<p >En ningún momento
+se intentara explotar a las personas que accedan al servicio. Por
+seguridad propia no comparta capturas de pantalla donde se vea la
+dirección ip o el hostname probado. No me puedo hacer responsable
+por las actividades de terceros.</p>
+
+<p >Las políticas de
+privacidad del servicio de Google las puede consultar <a href="https://www.google.com/intl/es/policies/privacy/" title="Google analytics">aquí</a>.
+</p>
+
+<p >El código fuente de
+la aplicación puede ser consultado en <a href="https://github.com/malbolgias/soyvulnerable" title="Github" >Github</a>.
+</p>
+{% endblock %}
