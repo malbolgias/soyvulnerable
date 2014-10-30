@@ -2,13 +2,10 @@
 
 {% block js %}
 <script>
-  $("loading-example-btn").click(function() {
-      var $btn = $(this);
-      $btn.button('Cargando');
-      // simulating a timeout
-      setTimeout(function () {
-	  $btn.button('reset');
-      }, 50000);
+  $('button[data-loading-text]').click(function () {
+          $(this).button('loading').delay(1000).queue(function() {
+            // $(this).button('reset');
+          });        
   });
 </script>
 {% endblock %}
